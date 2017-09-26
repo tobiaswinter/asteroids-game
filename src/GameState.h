@@ -1,7 +1,7 @@
 #pragma once
 #include "Serializable.h"
 #include "Participant.h"
-#include "Rigitbody.h"
+#include "Rigidbody.h"
 #include <vector>
 
 class GameState :
@@ -15,6 +15,7 @@ public:
 
     void AddParticipant(Participant& participant);
     void RemoveParticipant(Participant& participant);
+    std::vector<Participant*>::iterator RemoveParticipant(std::vector<Participant*>::iterator& it);
 
     void Update(double deltaTime);
 

@@ -1,6 +1,8 @@
 #pragma once
 #include "Serializable.h"
+#include "Rigidbody.h"
 #include <string>
+#include <vector>
 
 class Participant :
     public Serializable
@@ -12,10 +14,12 @@ public:
         Observer = 2
     };
 private:
-    std::string name;
+    char* name;
     Type type;
+    std::vector<Rigidbody> rigidbodies;
+    Spacecraft* spacecraft;
 public:
-    Participant();
+    Participant(char* name = "Participant", Type type = Type::Observer);
     ~Participant();
 
     void Serialize(std::ostream& stream) override;
@@ -23,5 +27,6 @@ public:
 
     Type GetType() { return type; }
 
+    bool IsAlive();
 };
 

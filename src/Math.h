@@ -21,11 +21,19 @@ struct vector3
         return *this;
     }
 
-    vector3& operator *(float& other)
+    vector3& operator *(float other)
     {
         x *= other;
         y *= other;
         z *= other;
+        return *this;
+    }
+
+    vector3& operator *(double other)
+    {
+        x *= (float)other;
+        y *= (float)other;
+        z *= (float)other;
         return *this;
     }
 

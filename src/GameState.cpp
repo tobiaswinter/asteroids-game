@@ -16,19 +16,40 @@ void GameState::AddParticipant(Participant& participant)
     participants.push_back(&participant);
 }
 
+std::vector<Participant*>::iterator GameState::RemoveParticipant(std::vector<Participant*>::iterator& it)
+{
+    return participants.erase(it);
+}
+
 void GameState::RemoveParticipant(Participant& participant)
 {
-    for (std::vector<Participant*>::iterator it = participants.begin(); it != participants.end(); ++it)
+    for (std::vector<Participant*>::iterator it = participants.begin(); it != participants.end();)
     {
         if (&participant == *it)
         {
-            participants.erase(it);
+            it = participants.erase(it);
+        }
+        else
+        {
+            ++it;
         }
     }
 }
 
 void GameState::Update(double deltaTime)
 {
+    Rigidbody::UpdatePhysics(deltaTime);
+    for (std::vector<Participant*>::iterator it = participants.begin(); it != participants.end();)
+    {
+        if (!(*it)->IsAlive())
+        {
+            it = RemoveParticipant(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
 }
 
 void GameState::Serialize(std::ostream & stream)

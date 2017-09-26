@@ -14,13 +14,26 @@ int main(int argc, char* argv[])
     Timer timer;
     GameState state;
     timer.Start();
+    Participant gameMaster("Master", Participant::Type::Player);
+    state.AddParticipant(gameMaster);
 
-    while (true)
-    {
-        double deltaTime = timer.GetTimeDelta();
-        timer.Reset();
-        state.Update(deltaTime);
-    }
+    state.AddParticipant(Participant("TestPlayer", Participant::Type::Player));
+
+    double deltaTime = timer.GetTimeDelta();
+    timer.Reset();
+    state.Update(deltaTime);
+
+    //std::ofstream os;
+    //os.open("test.bin", std::ofstream::out | std::ofstream::binary);
+    //state.Serialize(os);
+    //os.close();
+
+    //GameState gs2;
+    //std::ifstream is;
+    //is.open("test.bin", std::istream::in | std::istream::binary);
+    //gs2.Deserialize(is);
+    //is.close();
+
     return 0;
 }
 
