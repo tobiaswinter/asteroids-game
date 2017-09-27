@@ -2,6 +2,10 @@
 
 Projectile::Projectile(Participant* owner, Type type) : Rigidbody(type), owner(owner)
 {
+    if (type == Asteroid)
+    {
+        radius = ASTEROID_RADIUS;
+    }
 }
 
 

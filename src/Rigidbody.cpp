@@ -28,7 +28,6 @@ Rigidbody::~Rigidbody()
 
 void Rigidbody::Update(double deltaTime)
 {
-    hit = false;
     location = location + (velocity * deltaTime);
 }
 
@@ -45,7 +44,7 @@ void Rigidbody::UpdatePhysics(double deltaTime)
         {
             float minDistance = (*it)->radius + (*other)->radius;
             minDistance *= minDistance;
-            float distance = ((*it)->location - (*other)->location).lengthSquared();
+            float distance = ((*it)->GetLocation() - (*other)->GetLocation()).lengthSquared();
             if (minDistance > distance)
             {
                 (*it)->OnCollision(**other);
@@ -60,12 +59,12 @@ Spacecraft::Spacecraft() : Rigidbody(Type::Player)
     radius = SPACECRAFT_RADIUS;
     invulnerableCounter = INVULNERABLE_ON_START;
 
-    /*location =
-    {
-        (float)(std::rand() % ARENA_WIDTH )- (ARENA_WIDTH / 2),
-        (float)(std::rand() % ARENA_WIDTH) - (ARENA_WIDTH / 2),
-        (float)(std::rand() % ARENA_WIDTH) - (ARENA_DEPTH / 2)
-    };*/
+    //location =
+    //{
+    //    (float)(std::rand() % ARENA_WIDTH )- (ARENA_WIDTH / 2),
+    //    (float)(std::rand() % ARENA_WIDTH) - (ARENA_WIDTH / 2),
+    //    (float)(std::rand() % ARENA_WIDTH) - (ARENA_DEPTH / 2)
+    //};
 }
 
 void Spacecraft::OnCollision(Rigidbody & other)

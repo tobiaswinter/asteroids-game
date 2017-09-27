@@ -10,7 +10,15 @@ Participant::Participant(char* name, Type type) :name(name), type(type)
     case Gamemaster:
         for (size_t i = 0; i < ASTEROID_COUNT; i++)
         {
-            rigidbodies.push_back(new Projectile(this, Projectile::Type::Asteroid));
+            Projectile* p = new Projectile(this, Projectile::Type::Asteroid);
+            vector3 location
+            {
+                (float)(std::rand() % ARENA_WIDTH) - (ARENA_WIDTH / 2),
+                (float)(std::rand() % ARENA_WIDTH) - (ARENA_WIDTH / 2),
+                ((float)(std::rand() % ARENA_WIDTH) - (ARENA_DEPTH / 2)) * !IGNORE_Z_AXIS
+            };
+            p->SetLocation(location);
+            rigidbodies.push_back(p);
         }
         break;
     case Player:
