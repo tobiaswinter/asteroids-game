@@ -13,9 +13,9 @@ public:
     };
 private:
     static std::vector<Rigidbody*> physicsObjects;
-    Type type;
 
 protected:
+    Type type;
     float radius;
     vector3 location;
     vector3 velocity;
@@ -31,12 +31,14 @@ public:
     Rigidbody(Type type);
     virtual ~Rigidbody();
 
-    virtual void OnCollision(Rigidbody& other) = 0;
+    virtual void OnCollision(Rigidbody* other) = 0;
 
     static void UpdatePhysics(double deltaTime);
 
     vector3 GetLocation() { return location; }
     void SetLocation(vector3 newLocation) { location = newLocation; }
+    vector3 GetVelocity() { return velocity; }
+    void SetVelocity(vector3 newVelocity) { velocity = newVelocity; }
     Type GetType() { return type; }
 };
 
@@ -48,7 +50,7 @@ private:
 public:
     Spacecraft();
     unsigned int GetLifes() { return lifes; }
-    void OnCollision(Rigidbody& other) override;
+    void OnCollision(Rigidbody* other) override;
 
     void Update(double deltaTime);
     bool IsVulnerable() { return invulnerableCounter <= 0; }

@@ -12,6 +12,8 @@ public:
     Projectile(Participant* owner, Type type);
     ~Projectile();
 
-    void OnCollision(Rigidbody& other) override;
+    void OnCollision(Rigidbody* other) override;
+
+    void Reset();
 };
 

@@ -17,6 +17,15 @@ Participant::Participant(char* name, Type type) :name(name), type(type)
                 (float)(std::rand() % ARENA_WIDTH) - (ARENA_WIDTH / 2),
                 ((float)(std::rand() % ARENA_WIDTH) - (ARENA_DEPTH / 2)) * !IGNORE_Z_AXIS
             };
+            vector3 direction
+            {
+                (float)(std::rand() % ARENA_WIDTH) - (ARENA_WIDTH / 2),
+                (float)(std::rand() % ARENA_WIDTH) - (ARENA_WIDTH / 2),
+                ((float)(std::rand() % ARENA_WIDTH) - (ARENA_DEPTH / 2)) * !IGNORE_Z_AXIS
+            };
+            float length = direction.length();
+            direction = direction * (BULLET_SPPED / length);
+            p->SetVelocity(direction);
             p->SetLocation(location);
             rigidbodies.push_back(p);
         }
@@ -78,8 +87,4 @@ void Participant::Update(double deltaTime)
 bool Participant::IsAlive()
 {
     return spacecraft != nullptr || type != Player;
-}
-
-void Projectile::OnCollision(Rigidbody& other)
-{
 }
