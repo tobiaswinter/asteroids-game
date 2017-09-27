@@ -39,16 +39,9 @@ void GameState::RemoveParticipant(Participant& participant)
 void GameState::Update(double deltaTime)
 {
     Rigidbody::UpdatePhysics(deltaTime);
-    for (std::vector<Participant*>::iterator it = participants.begin(); it != participants.end();)
+    for (std::vector<Participant*>::iterator it = participants.begin(); it != participants.end(); ++it)
     {
-        if (!(*it)->IsAlive())
-        {
-            it = RemoveParticipant(it);
-        }
-        else
-        {
-            ++it;
-        }
+        (*it)->Update(deltaTime);
     }
 }
 
@@ -72,5 +65,29 @@ void GameState::Deserialize(std::istream & stream)
         Participant* p = new Participant();
         p->Deserialize(stream);
         participants.push_back(p);
+    }
+}
+
+bool GameState::IsAnyPlayerAlive()
+{
+    for each (Participant* p in participants)
+    {
+        if (p->IsAlive() && p->GetType() == Participant::Type::Player)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void GameState::PrintScores()
+{
+    std::cout << "Scores:" << std::endl;
+    for each(Participant* p in participants)
+    {
+        if (p->GetType() == Participant::Type::Player)
+        {
+            std::cout << p->GetName() << ": " << p->GetScore() << std::endl;
+        }
     }
 }

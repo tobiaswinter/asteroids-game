@@ -16,9 +16,12 @@ public:
 private:
     char* name;
     Type type;
-    std::vector<Rigidbody> rigidbodies;
-    Spacecraft* spacecraft;
+    std::vector<Rigidbody*> rigidbodies;
+
+    unsigned int score;
+    float scoreTimeCounter = 0;
 public:
+    Spacecraft* spacecraft;
     Participant(char* name = "Participant", Type type = Type::Observer);
     ~Participant();
 
@@ -26,6 +29,10 @@ public:
     void Deserialize(std::istream& stream) override;
 
     Type GetType() { return type; }
+    char* GetName() { return name; }
+    unsigned int GetScore() { return score; }
+
+    void Update(double deltaTime);
 
     bool IsAlive();
 };
