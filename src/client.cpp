@@ -77,13 +77,16 @@ int main(int argc, char* argv[])
         std::istringstream iss(Buffer);
         state.Deserialize(iss);
 
-        std::cout << Buffer << std::endl;
-        std::cin.ignore();
-
         NetRequest* Action = new NetRequest();
 
+        //Do magic here with Action
+
+        std::cin.ignore();
+
         Action->moving = true;
-        Action->shoot = false;
+        Action->shoot = true;
+
+        //Dont touch the following
 
         int size = SDLNet_TCP_Send(ServerSocket, (void *)Action, sizeof(NetRequest));
 

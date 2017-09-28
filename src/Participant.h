@@ -17,7 +17,7 @@ public:
     };
 private:
     TCPsocket socket;
-    char* name;
+    std::string name;
     Type type;
     std::vector<Rigidbody*> rigidbodies;
 
@@ -25,15 +25,21 @@ private:
     float scoreTimeCounter = 0;
 public:
     Spacecraft* spacecraft;
-    Participant(char* name = "Participant", Type type = Type::Observer);
+    Participant(std::string name = "Participant", Type type = Type::Observer);
     ~Participant();
 
     void Serialize(std::ostream& stream) override;
     void Deserialize(std::istream& stream) override;
 
     Type GetType() { return type; }
-    char* GetName() { return name; }
+    std::string GetName() { return name; }
     unsigned int GetScore() { return score; }
+    void AddScore(unsigned int s) { score += s; }
+
+    void AddRigidbody(Projectile* rigidbody) {
+        rigidbodies.push_back(rigidbody);
+    }
+    void RemoveRigidbody(Rigidbody* ridgidbody);
 
     void Update(double deltaTime);
 

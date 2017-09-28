@@ -42,5 +42,7 @@ public:
     vector3 GetVelocity() { return velocity; }
     void SetVelocity(vector3 newVelocity) { velocity = newVelocity; }
     Type GetType() { return type; }
+    void SetRadius(float newRadius) { radius = newRadius; }
+    float GetRadius() { return radius; }
 };
 

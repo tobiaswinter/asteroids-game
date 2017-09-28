@@ -50,12 +50,3 @@ void Projectile::Reset()
         radius = BULLET_RADIUS;
     }
 }
-
-void Projectile::OnCollision(Rigidbody* other)
-{
-    if (other == nullptr || other->GetType() != GetType())
-    {
-        Reset();
-    }
-
-}

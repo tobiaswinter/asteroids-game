@@ -48,22 +48,27 @@ void GameState::Update(double deltaTime)
 
 void GameState::Serialize(std::ostream & stream)
 {
-    stream << participants.size();
+    stream << participants.size() << ",";
     for (size_t i = 0; i < participants.size(); i++)
     {
-        stream << "Test";
+        participants[i]->Serialize(stream);
+        stream << ",";
     }
 }
 
 void GameState::Deserialize(std::istream & stream)
 {
     int ps = 0;
+    char sep = ',';
     stream >> ps;
+    stream >> sep;
+    participants.clear();
     for (size_t i = 0; i < ps; i++)
     {
-        std::string str;
-        stream >> str;
-        std::cout << str;
+        Participant* p = new Participant();
+        p->Deserialize(stream);
+        participants.push_back(p);
+        stream >> sep;
     }
 }
 
@@ -93,8 +98,9 @@ void GameState::PrintScores()
 
 void GameState::HandleRequests()
 {
-    for each (Participant* p in participants)
+    for (std::vector<Participant*>::iterator it = participants.begin(); it != participants.end(); ++it)
     {
+        Participant* p = (*it);
         if (p->GetType() == Participant::Type::Player)
         {
             NetRequest* request = new NetRequest;
@@ -102,11 +108,24 @@ void GameState::HandleRequests()
             std::cout << size << std::endl;
             if (size != sizeof(NetRequest))
             {
-                std::cerr << "failed to receive Request\n";
-                std::cerr << SDL_GetError();
-                exit(5);
+                std::cerr << "failed to receive Request from " << p->GetName() << std::endl;
+                std::cerr << "Remove Player from Participants" << std::endl;
+                participants.erase(it);
+                return;
             }
-
+            p->spacecraft->SetForwardVector(request->forwardVector);
+            if (request->moving)
+            {
+                p->spacecraft->SetVelocity(request->forwardVector * (float)SPACECRAFT_SPEED);
+            }
+            if (request->shoot)
+            {
+                Projectile* proj = p->spacecraft->Shoot(p);
+                if (proj != nullptr)
+                {
+                    p->AddRigidbody(proj);
+                }
+            }
         }
     }
 }
@@ -116,18 +135,22 @@ void GameState::DistributeToCLients()
     char buffer[BUFFER_SIZE];
     std::stringstream ss;
 
-    ss << 1;
-
     Serialize(ss);
 
     strcpy_s(buffer, ss.str().c_str());
-    for each (Participant* p in participants)
+
+    std::cout << buffer;
+    for (std::vector<Participant*>::iterator it = participants.begin(); it != participants.end(); ++it)
     {
-        if (p->GetType() == Participant::Type::Player)
+        Participant* p = (*it);
+        if (p->GetType() != Participant::Type::Gamemaster)
         {
             if (SDLNet_TCP_Send(p->GetSocket(), (void *)buffer, BUFFER_SIZE) < BUFFER_SIZE)
             {
-                std::cout << "failed to send data to client " << p->GetName() << "\n";
+                std::cout << "failed to send data to client " << p->GetName() << std::endl;
+                std::cerr << "Remove Player from Participants" << std::endl;
+                participants.erase(it);
+                return;
             }
         }
     }
