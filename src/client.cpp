@@ -3,7 +3,9 @@
 #include "network\net_shared.h"
 #include "network\NetRequest.h"
 #include "Participant.h"
+#include "GameState.h"
 #include <iostream>
+#include <sstream>
 
 int main(int argc, char* argv[])
 {
@@ -48,7 +50,10 @@ int main(int argc, char* argv[])
     }
 
     std::cerr << "sending player name...\n";
-    const char PlayerName[16] = "TWIN-BOT";
+
+    //Insert your Playername here
+    const char PlayerName[16] = "BOT";
+
     if (SDLNet_TCP_Send(ServerSocket, (void *)PlayerName, sizeof(PlayerName)) != sizeof(PlayerName))
     {
         std::cerr << "failed to notify client\n";
@@ -60,6 +65,19 @@ int main(int argc, char* argv[])
 
     while (true)
     {
+        GameState state;
+        if (SDLNet_TCP_Recv(ServerSocket, (void *)Buffer, BUFFER_SIZE) != BUFFER_SIZE)
+        {
+            std::cerr << "failed to receive data from server\n";
+            std::cerr << SDL_GetError();
+            exit(5);
+        }
+        std::cout << "Received buffer from Server" << std::endl;
+
+        std::istringstream iss(Buffer);
+        state.Deserialize(iss);
+
+        std::cout << Buffer << std::endl;
         std::cin.ignore();
 
         NetRequest* Action = new NetRequest();

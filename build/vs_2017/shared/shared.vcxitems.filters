@@ -6,12 +6,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\src\Projectile.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\src\Rigidbody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\src\Spacecraft.cpp" />
-    <ClCompile Include="C:\Users\Tobias\Documents\asteroids-game\build\vs_2017\shared\..\..\..\src\network\address.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\Tobias\Documents\asteroids-game\build\vs_2017\shared\..\..\..\src\network\net_shared.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\src\network\address.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\src\network\net_shared.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\GameSettings.h" />
@@ -23,15 +19,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\Serializable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\Spacecraft.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\Timer.h" />
-    <ClInclude Include="C:\Users\Tobias\Documents\asteroids-game\build\vs_2017\shared\..\..\..\src\network\address.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\Tobias\Documents\asteroids-game\build\vs_2017\shared\..\..\..\src\network\net_shared.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\Tobias\Documents\asteroids-game\build\vs_2017\shared\..\..\..\src\network\NetRequest.h">
-      <Filter>Network</Filter>
-    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\network\address.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\network\NetRequest.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\network\net_shared.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Network">

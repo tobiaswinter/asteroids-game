@@ -1,5 +1,6 @@
 #include "GameState.h"
 #include "network\NetRequest.h"
+#include <sstream>
 
 
 GameState::GameState()
@@ -47,24 +48,22 @@ void GameState::Update(double deltaTime)
 
 void GameState::Serialize(std::ostream & stream)
 {
-    unsigned int participantSize = participants.size();
-    stream.write(reinterpret_cast<const char*>(&participantSize), sizeof(unsigned int));
-    for (unsigned int i = 0; i < participantSize; ++i)
+    stream << participants.size();
+    for (size_t i = 0; i < participants.size(); i++)
     {
-        participants[i]->Serialize(stream);
+        stream << "Test";
     }
 }
 
 void GameState::Deserialize(std::istream & stream)
 {
-    participants.clear();
-    unsigned int participantSize = 0;
-    stream.read(reinterpret_cast<char*>(&participantSize), sizeof(unsigned int));
-    for (unsigned int i = 0; i < participantSize; ++i)
+    int ps = 0;
+    stream >> ps;
+    for (size_t i = 0; i < ps; i++)
     {
-        Participant* p = new Participant();
-        p->Deserialize(stream);
-        participants.push_back(p);
+        std::string str;
+        stream >> str;
+        std::cout << str;
     }
 }
 
@@ -108,6 +107,28 @@ void GameState::HandleRequests()
                 exit(5);
             }
 
+        }
+    }
+}
+
+void GameState::DistributeToCLients()
+{
+    char buffer[BUFFER_SIZE];
+    std::stringstream ss;
+
+    ss << 1;
+
+    Serialize(ss);
+
+    strcpy_s(buffer, ss.str().c_str());
+    for each (Participant* p in participants)
+    {
+        if (p->GetType() == Participant::Type::Player)
+        {
+            if (SDLNet_TCP_Send(p->GetSocket(), (void *)buffer, BUFFER_SIZE) < BUFFER_SIZE)
+            {
+                std::cout << "failed to send data to client " << p->GetName() << "\n";
+            }
         }
     }
 }

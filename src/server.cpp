@@ -90,12 +90,12 @@ int main(int argc, char* argv[])
     std::cout << "dedicated server running.\n";
 
     std::cout << "allocating buffer...\n";
-    char Buffer[BUFFER_SIZE];
     timer.Start();
 
     std::cout << "Start game" << std::endl;
     while (state.IsAnyPlayerAlive())
     {
+        state.DistributeToCLients();
         state.HandleRequests();
         double deltaTime = timer.GetTimeDelta();
         timer.Reset();

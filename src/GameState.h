@@ -26,5 +26,6 @@ public:
 
     void PrintScores();
     void HandleRequests();
+    void DistributeToCLients();
 };
 
