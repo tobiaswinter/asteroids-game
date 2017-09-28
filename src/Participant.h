@@ -1,8 +1,10 @@
 #pragma once
 #include "Serializable.h"
 #include "Rigidbody.h"
+#include "Spacecraft.h"
 #include <string>
 #include <vector>
+#include "network\net_shared.h"
 
 class Participant :
     public Serializable
@@ -14,6 +16,7 @@ public:
         Observer = 2
     };
 private:
+    TCPsocket socket;
     char* name;
     Type type;
     std::vector<Rigidbody*> rigidbodies;
@@ -35,5 +38,7 @@ public:
     void Update(double deltaTime);
 
     bool IsAlive();
+    void SetSocket(TCPsocket newSocket) { socket = newSocket; }
+    TCPsocket GetSocket() { return socket; }
 };
 

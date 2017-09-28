@@ -42,7 +42,7 @@ void Rigidbody::UpdatePhysics(double deltaTime)
     {
         if ((*it)->GetLocation().x > ((ARENA_WIDTH / 2) + 20) ||
             (*it)->GetLocation().x < (-(ARENA_WIDTH / 2) - 20) ||
-            (*it)->GetLocation().y > ((ARENA_HEIGHT / 2) + 20) ||
+            (*it)->GetLocation().y >((ARENA_HEIGHT / 2) + 20) ||
             (*it)->GetLocation().y < (-(ARENA_HEIGHT / 2) - 20) ||
             (*it)->GetLocation().z >((ARENA_DEPTH / 2) + 20) ||
             (*it)->GetLocation().z < (-(ARENA_DEPTH / 2) - 20))
@@ -60,30 +60,5 @@ void Rigidbody::UpdatePhysics(double deltaTime)
                 (*other)->OnCollision(*it);
             }
         }
-    }
-}
-
-Spacecraft::Spacecraft() : Rigidbody(Type::Player)
-{
-    radius = SPACECRAFT_RADIUS;
-    invulnerableCounter = INVULNERABLE_ON_START;
-}
-
-void Spacecraft::OnCollision(Rigidbody* other)
-{
-    if (IsVulnerable())
-    {
-        --lifes;
-        std::cout << "Player was hit - " << lifes << " Lifes remaining" << std::endl;
-        invulnerableCounter = INVULNERABLE_AFTER_HIT;
-    }
-}
-
-void Spacecraft::Update(double deltaTime)
-{
-    invulnerableCounter -= deltaTime;
-    if (invulnerableCounter < 0)
-    {
-        invulnerableCounter = 0;
     }
 }

@@ -3,6 +3,8 @@
 #include <vector>
 #include "GameSettings.h"
 
+class Participant;
+
 class Rigidbody
 {
 public:
@@ -40,19 +42,5 @@ public:
     vector3 GetVelocity() { return velocity; }
     void SetVelocity(vector3 newVelocity) { velocity = newVelocity; }
     Type GetType() { return type; }
-};
-
-class Spacecraft : public Rigidbody
-{
-private:
-    unsigned int lifes = LIFES;
-    double invulnerableCounter = 0;
-public:
-    Spacecraft();
-    unsigned int GetLifes() { return lifes; }
-    void OnCollision(Rigidbody* other) override;
-
-    void Update(double deltaTime);
-    bool IsVulnerable() { return invulnerableCounter <= 0; }
 };
 

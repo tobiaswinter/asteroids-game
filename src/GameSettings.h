@@ -1,5 +1,10 @@
 #pragma once
 
+#define SERVER_PORT 2000
+#define BUFFER_SIZE 10000
+
+#define FIXED_TIME_DELTA 0.1
+
 #define ARENA_WIDTH 200
 #define ARENA_HEIGHT 200
 #define ARENA_DEPTH 200
@@ -17,8 +22,8 @@
 #define ASTEROID_RADIUS 1
 #define SPACECRAFT_RADIUS 2
 #define BULLET_RADIUS 0.2
-#define SPACECRAFT_MAX_SPEED 20
+#define SPACECRAFT_SPEED 20
 #define ASTEROID_SPEED 10
-#define BULLET_SPPED 30
+#define BULLET_SPEED 30
 
 #define IGNORE_Z_AXIS true

@@ -24,7 +24,7 @@ Participant::Participant(char* name, Type type) :name(name), type(type)
                 ((float)(std::rand() % ARENA_WIDTH) - (ARENA_DEPTH / 2)) * !IGNORE_Z_AXIS
             };
             float length = direction.length();
-            direction = direction * (BULLET_SPPED / length);
+            direction = direction * (BULLET_SPEED / length);
             p->SetVelocity(direction);
             p->SetLocation(location);
             rigidbodies.push_back(p);

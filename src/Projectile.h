@@ -1,8 +1,6 @@
 #pragma once
 #include "Rigidbody.h"
 
-class Participant;
-
 class Projectile :
     public Rigidbody
 {

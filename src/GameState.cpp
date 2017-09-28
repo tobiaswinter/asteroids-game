@@ -1,5 +1,5 @@
 #include "GameState.h"
-
+#include "network\NetRequest.h"
 
 
 GameState::GameState()
@@ -88,6 +88,26 @@ void GameState::PrintScores()
         if (p->GetType() == Participant::Type::Player)
         {
             std::cout << p->GetName() << ": " << p->GetScore() << std::endl;
+        }
+    }
+}
+
+void GameState::HandleRequests()
+{
+    for each (Participant* p in participants)
+    {
+        if (p->GetType() == Participant::Type::Player)
+        {
+            NetRequest* request = new NetRequest;
+            int size = SDLNet_TCP_Recv(p->GetSocket(), (void *)request, sizeof(NetRequest));
+            std::cout << size << std::endl;
+            if (size != sizeof(NetRequest))
+            {
+                std::cerr << "failed to receive Request\n";
+                std::cerr << SDL_GetError();
+                exit(5);
+            }
+
         }
     }
 }

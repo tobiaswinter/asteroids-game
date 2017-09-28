@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\src\GameState.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\src\Participant.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\src\Projectile.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\src\Rigidbody.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\src\Spacecraft.cpp" />
+    <ClCompile Include="C:\Users\Tobias\Documents\asteroids-game\build\vs_2017\shared\..\..\..\src\network\address.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobias\Documents\asteroids-game\build\vs_2017\shared\..\..\..\src\network\net_shared.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\GameSettings.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\GameState.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\Math.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\Participant.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\Projectile.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\Rigidbody.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\Serializable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\Spacecraft.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\src\Timer.h" />
+    <ClInclude Include="C:\Users\Tobias\Documents\asteroids-game\build\vs_2017\shared\..\..\..\src\network\address.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobias\Documents\asteroids-game\build\vs_2017\shared\..\..\..\src\network\net_shared.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobias\Documents\asteroids-game\build\vs_2017\shared\..\..\..\src\network\NetRequest.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Network">
+      <UniqueIdentifier>{5e84037f-a6f9-430d-9073-f4da63fa81fe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

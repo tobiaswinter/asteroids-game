@@ -25,5 +25,6 @@ public:
     bool IsAnyPlayerAlive();
 
     void PrintScores();
+    void HandleRequests();
 };
 

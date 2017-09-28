@@ -44,7 +44,6 @@ void Projectile::Reset()
             location.z = -((ARENA_DEPTH / 2) - 20);
         }
 #endif
-        std::cout << "Asteroid Reseted" << std::endl;
     }
     else if (type = Bullet)
     {
