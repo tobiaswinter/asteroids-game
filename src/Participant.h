@@ -46,5 +46,7 @@ public:
     bool IsAlive();
     void SetSocket(TCPsocket newSocket) { socket = newSocket; }
     TCPsocket GetSocket() { return socket; }
+
+    Rigidbody* GetSpacecraft() { return spacecraft; }
 };
 

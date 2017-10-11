@@ -190,22 +190,29 @@ bool Participant::IsAlive()
 
 void Projectile::OnCollision(Rigidbody* other)
 {
-    if (other == nullptr || other->GetType() != GetType())
+    if (other != nullptr)
     {
-        if (other->GetType() == Asteroid)
+        if (other->GetType() != GetType())
         {
-            owner->AddScore(SCORE_PER_ASTEROID_SHOT);
-        }
-        if (other->GetType() == Player)
-        {
-            owner->AddScore(SCORE_PER_PLAYER_SHOT);
-        }
-        if (GetType() == Asteroid)
-        {
-            Reset();
-        }
-        else
-        {
+            if (other == owner->GetSpacecraft())
+            {
+                return;
+            }
+            if (other->GetType() == Asteroid)
+            {
+                owner->AddScore(SCORE_PER_ASTEROID_SHOT);
+            }
+            if (other->GetType() == Player)
+            {
+                owner->AddScore(SCORE_PER_PLAYER_SHOT);
+            }
+            if (GetType() == Asteroid)
+            {
+                Reset();
+            }
+            else
+            {
+            }
         }
     }
 }

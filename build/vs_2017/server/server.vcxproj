@@ -113,8 +113,8 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_net.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)3rd_party\SDL2-2.0.6\lib\$(PlatformShortName)\SDL2.dll $(OutDir). /h /y
-xcopy $(SolutionDir)3rd_party\SDL2_net-2.0.1\lib\$(PlatformShortName)\SDL2_net.dll $(OutDir). /h /y</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -131,8 +131,8 @@ xcopy $(SolutionDir)3rd_party\SDL2_net-2.0.1\lib\$(PlatformShortName)\SDL2_net.d
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_net.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)3rd_party\SDL2-2.0.6\lib\$(PlatformShortName)\SDL2.dll $(OutDir). /h /y
-xcopy $(SolutionDir)3rd_party\SDL2_net-2.0.1\lib\$(PlatformShortName)\SDL2_net.dll $(OutDir). /h /y</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -153,8 +153,8 @@ xcopy $(SolutionDir)3rd_party\SDL2_net-2.0.1\lib\$(PlatformShortName)\SDL2_net.d
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_net.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)3rd_party\SDL2-2.0.6\lib\$(PlatformShortName)\SDL2.dll $(OutDir). /h /y
-xcopy $(SolutionDir)3rd_party\SDL2_net-2.0.1\lib\$(PlatformShortName)\SDL2_net.dll $(OutDir). /h /y</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -175,8 +175,8 @@ xcopy $(SolutionDir)3rd_party\SDL2_net-2.0.1\lib\$(PlatformShortName)\SDL2_net.d
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_net.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)3rd_party\SDL2-2.0.6\lib\$(PlatformShortName)\SDL2.dll $(OutDir). /h /y
-xcopy $(SolutionDir)3rd_party\SDL2_net-2.0.1\lib\$(PlatformShortName)\SDL2_net.dll $(OutDir). /h /y</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
